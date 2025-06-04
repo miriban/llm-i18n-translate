@@ -6,7 +6,7 @@
  * See: https://github.com/miriban/llm-i18n-translate
  */
 
-import { runWithConfig } from '../src/index';
+import { runWithConfig } from '../src';
 
 runWithConfig().catch((err: unknown) => {
   if (err instanceof Error) {

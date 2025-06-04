@@ -97,17 +97,17 @@ function flattenObject(
  * @returns An object containing the source, target, and missingKeys (flat object).
  */
 export function compareTranslations(
-  source: Record<string, unknown>,
-  target: Record<string, unknown>,
+  source: Record<string, string>,
+  target: Record<string, string>,
 ): {
-  source: Record<string, unknown>;
-  target: Record<string, unknown>;
-  missingKeys: FlatObject;
+  source: Record<string, string>;
+  target: Record<string, string>;
+  missingKeys: Record<string, string>;
 } {
   // Find all differences between source and target
-  const differences: Diff<Record<string, unknown>, Record<string, unknown>>[] =
+  const differences: Diff<Record<string, string>, Record<string, string>>[] =
     diff(source, target) || [];
-  const missingKeys: FlatObject = {};
+  const missingKeys: Record<string, string> = {};
 
   differences.forEach((d) => {
     if (d.kind === 'N') {
@@ -124,7 +124,7 @@ export function compareTranslations(
         Object.assign(missingKeys, flatObj);
       } else {
         // Otherwise, add the missing value directly
-        missingKeys[flatKey] = d.lhs as unknown as string | number | boolean;
+        missingKeys[flatKey] = d.lhs as unknown as string;
       }
     }
     // We ignore "E" (edited) for missing keys in this context

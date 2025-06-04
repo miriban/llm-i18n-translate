@@ -12,7 +12,7 @@ dotenv.config();
  * updating the target file after each batch to avoid data loss.
  */
 export async function runWithConfig() {
-  const { config, rootDir } = await loadConfig();
+  const { config, rootDir } = loadConfig();
   const { sourceLocale, targetLocales, translationsDir, provider, model } = config;
 
   // Load source translations

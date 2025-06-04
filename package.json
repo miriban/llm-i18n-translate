@@ -1,12 +1,12 @@
 {
   "name": "llm-i18n-translate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically compare and translate missing i18n keys using llms",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
-    "auto-i18n-translate": "./bin/cli.js"
+    "llm-i18n-translate": "./dist/cli.js"
   },
   "files": [
     "dist",
@@ -14,9 +14,9 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup src/index.ts bin/cli.ts --dts --out-dir dist --format esm",
+    "build": "tsup src/index.ts src/cli.ts --dts --out-dir dist --format esm",
     "prepare": "npm run build",
-    "start": "ts-node bin/cli.ts",
+    "start": "ts-node dist/cli.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --check .",

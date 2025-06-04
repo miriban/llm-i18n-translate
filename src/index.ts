@@ -4,15 +4,24 @@ import { loadConfig } from './config';
 import { getLocalePath, ensureFile, mergeFlatToNested, compareTranslations } from './utils';
 import { GeminiTranslationProvider } from './providers';
 import type { ITranslationProvider } from './types/provider';
+import type { IConfig } from './types/config';
 
 dotenv.config();
 
 /**
- * Main entry point: loads config, detects missing translations, and translates in batches,
+ * Main entry point: loads config from files, detects missing translations, and translates in batches,
  * updating the target file after each batch to avoid data loss.
  */
-export async function runWithConfig() {
+export async function translateWithConfig() {
   const { config, rootDir } = loadConfig();
+  return translate(config, rootDir);
+}
+
+/**
+ * Main entry point with explicit config: detects missing translations and translates in batches,
+ * updating the target file after each batch to avoid data loss.
+ */
+export async function translate(config: IConfig, rootDir: string) {
   const { sourceLocale, targetLocales, translationsDir, provider, model } = config;
 
   // Load source translations

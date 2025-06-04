@@ -8,8 +8,14 @@
   "bin": {
     "auto-i18n-translate": "./bin/cli.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup src/index.ts bin/cli.ts --dts --out-dir dist --format esm",
+    "prepare": "npm run build",
     "start": "ts-node bin/cli.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
@@ -31,6 +37,9 @@
   ],
   "author": "Mohammed Abuiriban",
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "@google/genai": "^1.3.0",
     "deep-diff": "^1.0.2",
